@@ -4,14 +4,13 @@
 #include<QDebug>
 #include<QQuickItem>
 #include<QTcpSocket>
-
+#include<QQmlApplicationEngine>
 
 class Actions : public QObject
 {
 Q_OBJECT
 public:
     Q_INVOKABLE void buttonClicked(QQuickItem* presentItem);
-
     Actions();
 
 
@@ -20,6 +19,8 @@ private:
     QString commandMaker(QString,QString);
     void connectToServer(QTcpSocket*);
     QString getDeviceName(QString);
+    QString getDevStatusAfterOperation(QTcpSocket*);
+    void changeDeviceStatus(QObject* , QString );
 
 };
 

@@ -3,6 +3,8 @@
 #include "scaling.h"
 #include "actions.h"
 #include <QQmlContext>
+
+//QQmlApplicationEngine Actions::engine = new QQmlApplicationEngine();
 int main(int argc, char *argv[])
 {
 #if defined(Q_OS_WIN)
@@ -12,7 +14,6 @@ int main(int argc, char *argv[])
     Scaling scaling;
     Actions actions;
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     engine.rootContext()->setContextProperty("scaling", &scaling);

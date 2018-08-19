@@ -3,10 +3,10 @@ server=net.createServer(net.TCP)
 function performOperation(device,op)
 	if (op == "ON") then
 		gpio.write(device,gpio.HIGH)
-		print("pin "..device.." switched on")
+		print("Dev,"..device..",Turned"..",ON")
 	elseif(op == "OFF") then
 		gpio.write(device,gpio.LOW)
-		print("pin "..device.." switched off")
+		print("Dev,"..device..",Turned"..",OFF")
 	end
 end
 

@@ -6,7 +6,6 @@ Window {
     visible: true
     width: 640
     height: 480
-    property alias fan1Button: fan1Button
 
     Button {
         id: light1Button
@@ -132,12 +131,12 @@ Window {
     Text{
 
         id: fan1Status
-        objectName: fan1Status
+        objectName: "fan1Status"
         x: (parent.width * scaling.devStatusColumnScale) - (parent.width * scaling.devStatusWidthScale )/2
         y: parent.height *0.6
         width:parent.width * scaling.devStatusWidthScale
         height:parent.height *scaling.devStatusHeightScale
-        text: qsTr("OFF")
+        text: qsTr("ON")
 
     }
 
