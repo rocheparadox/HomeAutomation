@@ -136,7 +136,7 @@ Window {
         y: parent.height *0.6
         width:parent.width * scaling.devStatusWidthScale
         height:parent.height *scaling.devStatusHeightScale
-        text: qsTr("ON")
+        text: qsTr("OFF")
 
     }
 

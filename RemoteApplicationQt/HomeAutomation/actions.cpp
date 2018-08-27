@@ -17,21 +17,21 @@ Actions::Actions()
     void Actions::connectToServer(QTcpSocket* sock)
     {
         QList<QHostAddress> list = QNetworkInterface::allAddresses();
-        qDebug()<<"My Ip "<<list[2].toString();
+        //qDebug()<<"My Ip "<<list[2].toString();
         QStringList tempList = list[2].toString().split(".");
         QString hostIp = tempList[0]+"."+tempList[1]+"."+tempList[2]+"."+"1";
-        qDebug()<<"hostIp "<<hostIp;
-        qDebug()<<"Going to connect to Server";
+        //qDebug()<<"hostIp "<<hostIp;
+        //qDebug()<<"Going to connect to Server";
         QString hostName   = hostIp;
-        QString portString = "40001";
+        QString portString = "40000";
         quint16 port = portString.toUInt();
         sock->connectToHost(hostName ,port);
     }
 
     void Actions::sendCommand(QTcpSocket *sock, QString command)
     {
-        qDebug()<<"Going to send command "<< command;
-        qDebug()<<command.toLocal8Bit();
+        //qDebug()<<"Going to send command "<< command;
+        //qDebug()<<command.toLocal8Bit();
         sock->write(command.toLocal8Bit());
         //sock->flush();
         sock->waitForBytesWritten();
@@ -52,6 +52,7 @@ Actions::Actions()
 
     QString Actions::getDevStatusAfterOperation(QTcpSocket* sock){
         QString retString = sock->readAll();
+        //qDebug()<< retString.split(",");
         QString statusString = retString.split(",")[3];
         //qDebug()<<statusString[2];
         return statusString;
@@ -60,8 +61,8 @@ Actions::Actions()
     void Actions::changeDeviceStatus(QObject* presentItem, QString status){
         QString presentItemName = presentItem->property("objectName").toString();
         QString presentItemStatusString = presentItemName.mid(0,presentItemName.indexOf("Button")) + "Status";
-        qDebug()<<presentItemName.indexOf("Button");
-        qDebug()<<presentItemStatusString;
+        //qDebug()<<presentItemName.indexOf("Button");
+        //qDebug()<<presentItemStatusString;
         QObject* parentItem = presentItem->parent();
         QObject* presentItemStatus = parentItem->findChild<QObject*>(presentItemStatusString);
         if(status=="ON"){
@@ -77,28 +78,28 @@ Actions::Actions()
         QString operation = presentItem->property("text").toString();
         QString itemName  = presentItem->property("objectName").toString();
         QString devName   = getDeviceName(itemName);
-        qDebug()<<operation<<devName;
+        //qDebug()<<operation<<devName;
         QString command = commandMaker(operation,devName);
         //qDebug() << command;
         QTcpSocket sock;
         connectToServer(&sock);
         if(sock.waitForConnected(5000)){
-            qDebug()<<"Connected to server";
+            //qDebug()<<"Connected to server";
             sendCommand(&sock,command);
             if(!sock.waitForReadyRead(3000)){
-                qDebug()<<"Error while reading Tcp";
+                //qDebug()<<"Error while reading Tcp";
             }
-            qDebug()<<"wait Over";
+            //qDebug()<<"wait Over";
             QString opStatus = getDevStatusAfterOperation(&sock);
-            qDebug()<<opStatus;
+            //qDebug()<<opStatus;
             changeDeviceStatus(presentItem,opStatus);
             sock.close();
-            qDebug()<<"lol";
+            //qDebug()<<"lol";
         }
         else{
-            qDebug()<<"Error connecting to server";
+            //qDebug()<<"Error connecting to server";
         }
-        qDebug()<<"Out of the connectToServer";
+        //qDebug()<<"Out of the connectToServer";
 
         if(operation == "OFF"){
             presentItem->setProperty("text","ON");
