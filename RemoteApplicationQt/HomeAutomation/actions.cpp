@@ -16,11 +16,18 @@ Actions::Actions()
 
     void Actions::connectToServer(QTcpSocket* sock)
     {
+        QStringList tempList ;
         QList<QHostAddress> list = QNetworkInterface::allAddresses();
-        //qDebug()<<"My Ip "<<list[2].toString();
-        QStringList tempList = list[2].toString().split(".");
+        qDebug()<<"Ip list "<< list;
+        foreach (const  QHostAddress &address, list) {
+            if(address.protocol() == QAbstractSocket::IPv4Protocol  && address != QHostAddress(QHostAddress::LocalHost) ){
+                qDebug()<<"Device ipv4 address is "<<address;
+                tempList = address.toString().split(".");
+                break;
+            }
+        }
+        qDebug()<<"hostIp "<<tempList;
         QString hostIp = tempList[0]+"."+tempList[1]+"."+tempList[2]+"."+"1";
-        //qDebug()<<"hostIp "<<hostIp;
         //qDebug()<<"Going to connect to Server";
         QString hostName   = hostIp;
         QString portString = "40000";
