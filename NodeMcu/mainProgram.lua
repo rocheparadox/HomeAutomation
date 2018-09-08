@@ -1,12 +1,14 @@
 server=net.createServer(net.TCP)
 
 function performOperation(device,op)
+    OFF = gpio.HIGH
+    ON  = gpio.LOW
 	if (op == "ON") then
-		gpio.write(device,gpio.HIGH)
+		gpio.write(device,ON)
         status = "ON"
 
 	elseif(op == "OFF") then
-		gpio.write(device,gpio.LOW)
+		gpio.write(device,OFF)
 		status = "OFF"
 	end
     retString  = "Dev,"..device..",Turned,"..status
