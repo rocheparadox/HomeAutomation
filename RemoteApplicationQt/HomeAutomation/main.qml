@@ -61,8 +61,7 @@ Window {
         y: parent.height *0.2
         width:parent.width * scaling.devNameWidthScale
         height:parent.height *scaling.devNameHeightScale
-        text: qsTr("Light 1")
-        wrapMode: Text.WrapAnywhere
+        text: qsTr("Living\nroom\nLight")
 
     }
 
@@ -74,7 +73,7 @@ Window {
         y: parent.height *0.4
         width:parent.width * scaling.devNameWidthScale
         height:parent.height *scaling.devNameHeightScale
-        text: qsTr("Light 2")
+        text: qsTr("Portico\nLight")
 
     }
 
@@ -86,7 +85,7 @@ Window {
         y: parent.height *0.6
         width:parent.width * scaling.devNameWidthScale
         height:parent.height *scaling.devNameHeightScale
-        text: qsTr("Fan 1")
+        text: qsTr("Living\nroom\nFan")
 
     }
 
@@ -98,7 +97,7 @@ Window {
         y: parent.height *0.8
         width:parent.width * scaling.devNameWidthScale
         height:parent.height *scaling.devNameHeightScale
-        text: qsTr("Fan 2")
+        text: qsTr("Portico\nFan")
 
     }
 
