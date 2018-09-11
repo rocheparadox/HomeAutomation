@@ -1,0 +1,6 @@
+{
+"hall_light":"OFF",
+"hall_fan":"OFF",
+"portico_light":"OFF",
+"portico_fan":"OFF"
+}

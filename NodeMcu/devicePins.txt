@@ -1,0 +1,6 @@
+{
+"hall_light":"3",
+"hall_fan":"4",
+"portico_light":"1",
+"portico_fan":"2"
+}

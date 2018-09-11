@@ -16,19 +16,24 @@ Actions::Actions()
 
     void Actions::connectToServer(QTcpSocket* sock)
     {
-        QStringList tempList ;
+        QStringList tempListBack,tempList ;
         QList<QHostAddress> list = QNetworkInterface::allAddresses();
+
+
         qDebug()<<"Ip list "<< list;
         foreach (const  QHostAddress &address, list) {
             if(address.protocol() == QAbstractSocket::IPv4Protocol  && address != QHostAddress(QHostAddress::LocalHost) ){
                 qDebug()<<"Device ipv4 address is "<<address;
-                tempList = address.toString().split(".");
-                break;
+                tempListBack = address.toString().split(".");
+                if(tempListBack[0] == "192"){
+                    tempList = tempListBack;
+                    break;
+                }
             }
         }
         qDebug()<<"hostIp "<<tempList;
         QString hostIp = tempList[0]+"."+tempList[1]+"."+tempList[2]+"."+"1";
-        //qDebug()<<"Going to connect to Server";
+        qDebug()<<"Going to connect to Server";
         QString hostName   = hostIp;
         QString portString = "40000";
         quint16 port = portString.toUInt();
@@ -48,13 +53,14 @@ Actions::Actions()
     QString Actions::getDeviceName(QString itemName){
 
         if (itemName == "light1Button")
-            return "1";
+            return "hall_light";
         else if (itemName == "light2Button")
-            return "2";
+            return "portico_light";
         else if (itemName ==  "fan1Button")
-            return "3";
+            return "hall_fan";
         else if (itemName ==  "fan2Button")
-            return "4";
+            return "portico_fan";
+            
     }
 
     QString Actions::getDevStatusAfterOperation(QTcpSocket* sock){
@@ -94,7 +100,7 @@ Actions::Actions()
             //qDebug()<<"Connected to server";
             sendCommand(&sock,command);
             if(!sock.waitForReadyRead(3000)){
-                //qDebug()<<"Error while reading Tcp";
+                qDebug()<<"Error while reading Tcp";
             }
             //qDebug()<<"wait Over";
             QString opStatus = getDevStatusAfterOperation(&sock);
@@ -104,9 +110,9 @@ Actions::Actions()
             //qDebug()<<"lol";
         }
         else{
-            //qDebug()<<"Error connecting to server";
+            qDebug()<<"Error connecting to server";
         }
-        //qDebug()<<"Out of the connectToServer";
+        qDebug()<<"Out of the connectToServer";
 
         if(operation == "OFF"){
             presentItem->setProperty("text","ON");
@@ -115,5 +121,3 @@ Actions::Actions()
             presentItem->setProperty("text","OFF");
         }
     }
-
-
