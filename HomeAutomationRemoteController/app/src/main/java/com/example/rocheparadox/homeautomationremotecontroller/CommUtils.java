@@ -25,7 +25,8 @@ public class CommUtils  implements Runnable{
             sendMessageToHost(tcpSocket);
             Log.i("HARC_info","Message sent to host "+hostAddress+" and port "+port +" the message is: "+command);
             String responseMessage = readFromSocket(tcpSocket);
-            operationAfterMath(responseMessage);
+            Log.i("HARC_info","Response Message "+ responseMessage );
+            //operationAfterMath(responseMessage);
         }
         catch(Exception e){
             Log.i("HARC_info","Error while trying to send message to server" + e.toString());

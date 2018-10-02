@@ -1,6 +1,7 @@
 package com.example.rocheparadox.homeautomationremotecontroller;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.support.v4.content.ContextCompat;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         //InitAllSystems initAllSystems = new InitAllSystems();
         InitAllSystems.initAppliancesAsJsonObject(this);
         InitAllSystems.initWifiSystems();
+        InitAllSystems.getCurrentDevicesStatus();
     }
 
     public void applianceButtonClick(android.view.View view){
@@ -38,11 +40,19 @@ public class MainActivity extends AppCompatActivity {
             String command = PrepUtils.commandMaker(applianceCode,operation);
             CommUtils sendCommnd = new CommUtils(command);
             new Thread(sendCommnd).start();
-
+            if(operation.equals("ON")) {
+                button.setText("OFF");
+                button.setBackgroundColor(Color.rgb(255, 165, 0));
+            }
+            else if(operation.equals("OFF")){
+                button.setText("ON");
+                button.setBackgroundColor(Color.rgb(0, 200, 0));
+            }
 
         }
-
     }
-    
+
+
+
 
 }

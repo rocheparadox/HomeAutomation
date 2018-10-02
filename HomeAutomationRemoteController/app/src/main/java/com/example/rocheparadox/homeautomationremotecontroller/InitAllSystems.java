@@ -83,4 +83,12 @@ public class InitAllSystems {
         return jsonObject;
     }
 
+    public static String getCurrentDevicesStatus(){
+        String currentStatus,command;
+        command = "allDevStatus";
+        CommUtils getDevicesStatus = new CommUtils(command);
+        new Thread(getDevicesStatus).start();
+        //Log.i("HARC_info", "Current Status of the devices " + currentStatus);
+        return "";
+    }
 }
