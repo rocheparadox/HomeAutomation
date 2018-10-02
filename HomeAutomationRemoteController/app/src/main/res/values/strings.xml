@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">HomeAutomationRemoteController</string>
+    <string name="appliance1">Appliance 1</string>
+    <string name="appliance2">Appliance 2</string>
+    <string name="appliance3">Appliance 3</string>
+    <string name="appliance4">Appliance 4</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="systemStatusString">System Status : </string>
+    <string name="offline">OFFLINE</string>
+    <string name="online">ONLINE</string>
+    <string name="button_font_text_size">"15sp"</string>
+
+</resources>

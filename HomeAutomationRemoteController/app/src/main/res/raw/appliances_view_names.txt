@@ -1,0 +1,6 @@
+{
+"appliance1":"Hall Light",
+"appliance2":"Hall Fan",
+"appliance3":"Portico Light",
+"appliance4":"Portico Fan"
+}
